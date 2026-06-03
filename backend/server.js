@@ -11,11 +11,16 @@ const userRoutes = require('./routes/users');
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: 'https://skillbridge-r03a91sth-saicharan503462-boops-projects.vercel.app',
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
-}));
+};
+
+// Middleware
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 
@@ -55,4 +60,3 @@ mongoose
   .catch((err) => {
     console.error('MongoDB connection error:', err);
   });
-  
