@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://skillbridge-api.onrender.com/api',
+  baseURL: 'https://skillbridge-api-gskq.onrender.com/api',
 });
 
 // Attach token to every request if available
