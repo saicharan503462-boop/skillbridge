@@ -1,13 +1,17 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: 'https://skillbridge-api.onrender.com/api',
 });
 
 // Attach token to every request if available
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('sb_token');
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+
   return config;
 });
 
@@ -19,6 +23,7 @@ api.interceptors.response.use(
       localStorage.removeItem('sb_token');
       localStorage.removeItem('sb_user');
     }
+
     return Promise.reject(err);
   }
 );
