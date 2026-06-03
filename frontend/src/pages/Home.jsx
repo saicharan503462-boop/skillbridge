@@ -118,7 +118,9 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {loading
             ? Array(6).fill(0).map((_, i) => <SkillCardSkeleton key={i} />)
-            : trending.map((skill) => <SkillCard key={skill._id} skill={skill} />)
+            : Array.isArray(trending) && trending.map((skill) => (
+    <SkillCard key={skill._id} skill={skill} />
+  ))
           }
           {!loading && trending.length === 0 && (
             <p className="text-gray-500 col-span-3 py-8 text-center">No skills yet. Be the first to upload!</p>
