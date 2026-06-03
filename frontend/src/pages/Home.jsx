@@ -142,7 +142,9 @@ export default function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {loading
             ? Array(8).fill(0).map((_, i) => <SkillCardSkeleton key={i} />)
-            : recent.map((skill) => <SkillCard key={skill._id} skill={skill} />)
+            : Array.isArray(recent) && recent.map((skill) => (
+    <SkillCard key={skill._id} skill={skill} />
+  ))
           }
           {!loading && recent.length === 0 && (
             <p className="text-gray-500 col-span-4 py-8 text-center">No skills yet.</p>
